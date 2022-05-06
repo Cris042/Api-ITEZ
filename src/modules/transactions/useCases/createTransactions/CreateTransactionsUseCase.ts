@@ -27,18 +27,28 @@ class CreateTransactionsUseCase
     const categorys = ["Entretenimento", "Alimentação", "Educação", "Saúde", "Transporte", "Receitas"];
     let alreadyExistsCategory = "";
 
+    const types = ["Receitas", "Despesas"];
+    let alreadyExistsType = "";
+
     if( categorys.includes( category )) 
        alreadyExistsCategory = "true";
     else
        alreadyExistsCategory = "false"; 
 
+    if( types.includes( type )) 
+        alreadyExistsType = "true";
+    else
+        alreadyExistsType = "false"; 
+
     if ( alreadyExists )    
       throw new AppError("Name already exists");
   
     if ( alreadyExistsCategory == "false" )    
-      throw new AppError("Category not exists");
-    
+      throw new AppError("Category not exists. Existing categories: Entretenimento, Alimentação, Educação, Saúde, Transporte, Receitas");
 
+    if ( alreadyExistsType == "false" )    
+      throw new AppError("Type not exists. Existing types: Receitas, Despesas");
+    
     await this.transactionsRepository.create({
       name,
       idUser,

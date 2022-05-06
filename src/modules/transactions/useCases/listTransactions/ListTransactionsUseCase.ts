@@ -15,7 +15,6 @@ class ListTransactionsUseCase
   async execute( id: string ): Promise<Transactions[]> 
   {
     const transactions = await this.transactionsRepository.list( id );
-
     return transactions;
   }
 }

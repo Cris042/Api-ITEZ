@@ -49,7 +49,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "token": {
+                  "refresh_token": {
                     "type": "string"
                   }
                 }
@@ -63,6 +63,35 @@
           },
           "400": {
             "description": "Refresh Token does not exists"
+          }
+        }
+      }
+    },
+    "/authenticate/logout": {
+      "post": {
+        "tags": ["Logout Token"],
+        "summary": "Logout Token",
+        "description": "Logout Token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "user does not exists"
           }
         }
       }
@@ -105,7 +134,7 @@
         }
       }
     },
-    "users/": {
+    "/users": {
       "put": {
         "tags": ["Update user"],
         "summary": "Update user",
@@ -143,7 +172,7 @@
         }
       }
     },
-    "/transactions/": {
+    "/transactions": {
       "post": {
         "tags": ["Register Transaction"],
         "summary": "Register Transaction",
@@ -185,7 +214,7 @@
         }
       }
     },
-    "transactions/": {
+    "/transactions/": {
       "put": {
         "tags": ["Update Transaction"],
         "summary": "Update Transaction",
@@ -230,7 +259,7 @@
         }
       }
     },
-    "transactions/delet": {
+    "/transactions/delet": {
       "put": {
         "tags": ["Delet Transaction"],
         "summary": "Delet Transaction",
@@ -278,9 +307,57 @@
                       "name": {
                         "type": "string"
                       },
-                      "description": {
+                      "idUser": {
                         "type": "string"
-                      }
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "integer"
+                      },
+                      "category": {
+                        "type": "string"
+                      }           
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/report?id=[idUser]": {
+      "get": {
+        "tags": ["Report Transaction"],
+        "summary": "Report Transaction",
+        "description": "Report Transaction",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "idUser": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "integer"
+                      },
+                      "category": {
+                        "type": "string"
+                      }           
                     }
                   }
                 }

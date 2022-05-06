@@ -1,21 +1,21 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { RefreshTokenUseCase } from "./RefreshTokenUseCase";
+import { LogoutUseCase } from "./LogoutUseCase";
 
-class RefreshTokenController {
+class LogoutUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const token =
       request.body.refresh_token ||
       request.headers["x-access-token"] ||
       request.query.token;
 
-    const refreshTokenUseCase = container.resolve(RefreshTokenUseCase);
+    const logoutUseCase = container.resolve( LogoutUseCase );
 
-    const refresh_token = await refreshTokenUseCase.execute(token);
+    const refresh_token = await logoutUseCase.execute(token);
 
     return response.json(refresh_token);
   }
 }
 
-export { RefreshTokenController };
+export { LogoutUserController };

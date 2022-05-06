@@ -10,7 +10,7 @@ class UpdateTransactionsController
     const transactionsId = request.body.id;
     const { name, idUser, type, value } = request.body;
     const updateTransactionsUseCase = container.resolve ( UpdateTransactionsUseCase );
- 
+    
     const user = await updateTransactionsUseCase.execute
     ({
       id: transactionsId,

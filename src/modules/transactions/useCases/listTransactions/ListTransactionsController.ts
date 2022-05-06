@@ -9,7 +9,6 @@ class ListTransactionsController {
 
     const { id } = request.query;
     const listTransactionsUseCase = container.resolve( ListTransactionsUseCase );
-
     const all = await listTransactionsUseCase.execute( id as string );
 
     return response.json(all);

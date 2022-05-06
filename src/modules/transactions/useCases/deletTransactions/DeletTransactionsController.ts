@@ -9,7 +9,7 @@ class DeletTransactionsController
   {
     const transactionsId = request.body.id;
     const deletTransactionsUseCase  = container.resolve( DeletTransactionsUseCase  );
-   
+    
     const obj = await deletTransactionsUseCase.execute
     ({
       id: transactionsId,
