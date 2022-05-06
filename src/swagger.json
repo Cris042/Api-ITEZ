@@ -1,0 +1,320 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api ITEZ Documentation",
+    "description": "This is an API Rent",
+    "version": "1.0.0"
+  },
+  "paths": {  
+    "/authenticate/sessions": {
+      "post": {
+        "tags": ["Authentication user"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password incorrect!"
+          }
+        }
+      }
+    },
+    "/authenticate/refresh-token/": {
+      "post": {
+        "tags": ["Refresh Token"],
+        "summary": "Refresh Token",
+        "description": "Refresh Token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Refresh Token does not exists"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "post": {
+        "tags": ["Register user"],
+        "summary": "Register user",
+        "description": "Register user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "isAdmin": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "User already exist"
+          }
+        }
+      }
+    },
+    "users/": {
+      "put": {
+        "tags": ["Update user"],
+        "summary": "Update user",
+        "description": "Update user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+  
+          
+          
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/transactions/": {
+      "post": {
+        "tags": ["Register Transaction"],
+        "summary": "Register Transaction",
+        "description": "So e permitido o cadastro da transaction se ela pertencer em umas dessas categorias : Entretenimento, Alimentação. Educação, Saúde, Transporte e Receitas ( Todas transaction de tipo Receitas pertence a categoria Receitas ) ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "idUser": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "integer"
+                  },
+                  "category": {
+                    "type": "string" 
+                  }           
+                }
+              }
+            }
+          }       
+          
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "E-mail already exists"
+          }
+        }
+      }
+    },
+    "transactions/": {
+      "put": {
+        "tags": ["Update Transaction"],
+        "summary": "Update Transaction",
+        "description": "Update Transaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "idUser": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "integer"
+                  },
+                  "category": {
+                    "type": "string"
+                  }           
+                }
+              }
+            }
+          }       
+          
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "transactions/delet": {
+      "put": {
+        "tags": ["Delet Transaction"],
+        "summary": "Delet Transaction",
+        "description": "Delet Transaction",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }    
+                }
+              }
+            }
+          }       
+          
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/transactions/list?id=[idUser]": {
+      "get": {
+        "tags": ["List Transaction"],
+        "summary": "List Transaction",
+        "description": "List Transaction",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    
+  },
+  
+  
+  "definitions": {
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+  
+}
