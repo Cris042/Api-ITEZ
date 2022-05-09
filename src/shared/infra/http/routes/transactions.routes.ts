@@ -8,22 +8,24 @@ import { TDocumentDefinitions } from "pdfmake/interfaces";
 
 import { CreateTransactionsController } from "@modules/transactions/useCases/createTransactions/CreateTransactionsController";
 import { ListTransactionsController } from "@modules/transactions/useCases/listTransactions/ListTransactionsController";
-import { ListTransactionsUseCase } from "@modules/transactions/useCases/listTransactions/ListTransactionsUseCase";
 import { UpdateTransactionsController } from "@modules/transactions/useCases/updateTransactions/UpdateTransactionsController";
 import { DeletTransactionsController } from "@modules/transactions/useCases/deletTransactions/DeletTransactionsController";
+import { ReportTransactionsController } from "@modules/transactions/useCases/reportTrasactions/ReportTransactionsController";
 
+import { ListTransactionsUseCase } from "@modules/transactions/useCases/listTransactions/ListTransactionsUseCase";
 
 const transactionsRoutes = Router();
 const createTransactionsController = new CreateTransactionsController();
 const listTransactionsController = new ListTransactionsController();
 const deletTransactionsController = new DeletTransactionsController();
 const updateTransactionsController = new UpdateTransactionsController();
+const reportTransactionsController = new ReportTransactionsController();
 
 transactionsRoutes.post( "/", ensureAuthenticated, createTransactionsController.handle );
 transactionsRoutes.get( "/list", ensureAuthenticated, listTransactionsController.handle );
 transactionsRoutes.put( "/", ensureAuthenticated, updateTransactionsController.handle );
 transactionsRoutes.put( "/delet",ensureAuthenticated, deletTransactionsController.handle );
-
+// transactionsRoutes.get( "/report",  reportTransactionsController.handle );
 
 transactionsRoutes.get( "/report", async ( request : Request, response: Response) => { 
 
