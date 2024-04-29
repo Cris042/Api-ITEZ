@@ -1,5 +1,5 @@
 <h1 allign="center">
-    Api Node Authentication
+    Api Node Auth
 </h1>
 
 ## Tecnologias 🚀 
@@ -7,8 +7,6 @@
 - [x] Node
 - [x] Jest
 - [x] TypeScript
-- [x] Swagger
-- [x] Design Pattern Solid
 
 ## Depedencias globais necessarias 💻
 
